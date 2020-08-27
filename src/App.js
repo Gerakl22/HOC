@@ -16,7 +16,7 @@ const withLocalStorage = (Component, initialValue, storageKey) => {
     })`;
 
     state = {
-      value: initialValue,
+      value: localStorage.getItem(storageKey) ? JSON.parse(localStorage.getItem(storageKey)) : initialValue,
     };
 
     onChange = (e) => {
