@@ -15,9 +15,18 @@ const withLocalStorage = (Component, initialValue, storageKey) => {
       Component.displayName || Component.name || ""
     })`;
 
-    state = {
-      value: localStorage.getItem(storageKey) ? JSON.parse(localStorage.getItem(storageKey)) : initialValue,
-    };
+    constructor(props) {
+      super(props);
+
+      const valueLocalStorage = localStorage.getItem(storageKey);
+      const value = valueLocalStorage
+        ? JSON.parse(valueLocalStorage)
+        : initialValue;
+
+      this.state = {
+        value,
+      };
+    }
 
     onChange = (e) => {
       this.setState({
